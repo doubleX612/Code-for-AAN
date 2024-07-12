@@ -170,7 +170,7 @@ data_path = ''
 
 # lrate = LearningRateScheduler(step_decay1)
 
-n_train = 1 # 
+n_train = 3 # 
 acc = np.zeros((9, n_train))
 kappa = np.zeros((9, n_train))
 best_acc,best_kappa=[],[]
@@ -199,7 +199,7 @@ for sub in range(1,10): # (num_sub): for all subjects, (i-1,i): for the ith subj
             np.random.seed(k+1)
             tf.random.set_seed(k+1)
             history = test_model.fit(X_train_new,y_train_onehot_new,
-                batch_size=64*8,epochs= 300,
+                batch_size=64,epochs= 500,
                 validation_data=([X_val, y_val_onehot]),
                 callbacks=[checkpoint,ReduceLROnPlateau(monitor="val_loss", factor=0.90, patience=20, verbose=0, min_lr=0.0001)],#ReduceLROnPlateau(monitor="val_loss", factor=0.90, patience=20, verbose=0, min_lr=0.0001)
                 # shuffle = True,
